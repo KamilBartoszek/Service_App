@@ -5,7 +5,7 @@ namespace ServiceApp.Models
     public class ServiceOrders
     {
         public int Id { get; set; }
-        public int OrderID { get; set; }
+        public string OrderID { get; set; }
         [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public string? SerialNumber { get; set; }

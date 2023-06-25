@@ -48,6 +48,7 @@ namespace ServiceApp.Controllers
         // GET: ServiceOrders/Create
         public IActionResult Create()
         {
+       
             return View();
         }
 
