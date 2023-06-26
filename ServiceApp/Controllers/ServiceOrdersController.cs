@@ -20,11 +20,22 @@ namespace ServiceApp.Controllers
         }
 
         // GET: ServiceOrders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.ServiceOrders != null ? 
-                          View(await _context.ServiceOrders.ToListAsync()) :
-                          Problem("Entity set 'ServiceAppContext.ServiceOrders'  is null.");
+            if (_context.ServiceOrders == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var order = from m in _context.ServiceOrders
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                order = order.Where(s => s.Type!.Contains(searchString));
+            }
+
+            return View(await order.ToListAsync());
         }
 
         // GET: ServiceOrders/Details/5
